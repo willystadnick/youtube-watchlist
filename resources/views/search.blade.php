@@ -42,8 +42,8 @@
                                     <div class="col-md-3 align-self-center mb-3">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img src="{{ $item['snippet']['thumbnails']['default']['url'] }}" alt="{{ $item['snippet']['title'] }}" class="img-thumbnail">
-                                                <h4>{{ $loop->index + 1 }}) {{ Str::limit($item['snippet']['title'], 20) }} [{{ $item['contentDetails']['duration'] }}]</h4>
+                                                <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}" class="img-thumbnail">
+                                                <h4>{{ $loop->index + 1 }}) {{ Str::limit($item['title'], 20) }} ~{{ $item['minutes'] }}min</h4>
                                             </div>
                                         </div>
                                     </div>

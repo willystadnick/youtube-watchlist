@@ -34,7 +34,18 @@ class Search extends Controller
                 'id' => join(',', $ids),
             ]);
 
-            $data['results'] = $videos['items'];
+            foreach ($videos['items'] as $item) {
+                $seconds = (new \DateTime)
+                    ->setTimeStamp(0)
+                    ->add(new \DateInterval($item['contentDetails']['duration']))
+                    ->getTimeStamp();
+
+                $data['results'][] = [
+                    'title' => $item['snippet']['title'],
+                    'image' => $item['snippet']['thumbnails']['default']['url'],
+                    'minutes' => ceil($seconds / 60),
+                ];
+            }
         } catch (\Google_Service_Exception $e) {
             $data['alert']['type'] = 'danger';
             $data['alert']['message'] = sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
