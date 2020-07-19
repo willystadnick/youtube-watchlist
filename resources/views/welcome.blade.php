@@ -9,24 +9,51 @@
 <body>
     <div class="container mt-3">
         <div class="row align-items-center justify-content-center">
-            <div class="col-md-8 align-self-center">
+            <div class="col align-self-center">
                 <div class="card">
                     <div class="card-body">
                         <h1>{{ env('APP_NAME') }}</h1>
+                        @if (isset($alert))
+                        <div class="alert alert-{{ $alert['type'] }}" role="alert">
+                            {{ $alert['message'] }}
+                        </div>
+                        @endif
                         <form method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group @error('search') text-danger @enderror">
                                 <label for="field-search">Search</label>
-                                <input type="text" class="form-control" id="field-search" name="search" value="{{ old('search') }}" required>
+                                <input type="text" class="form-control" id="field-search" name="search" value="{{ $input['search'] ?? old('search') }}" required>
                                 @error('search') <small>{{ $message }}</small> @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <input class="btn btn-secondary" type="reset" value="Reset">
-                            <a href="/" class="btn btn-danger"
-                             role="button">Cancel</a>
+                            <a href="/" class="btn btn-danger" role="button">Cancel</a>
                         </form>
                     </div>
                 </div>
+                @if (isset($results))
+                <div class="row align-items-center justify-content-center mt-3">
+                    <div class="col align-self-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>Results</h2>
+                                <div class="row align-items-center justify-content-center">
+                                    @foreach ($results as $item)
+                                    <div class="col-md-3 align-self-center mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img src="{{ $item['snippet']['thumbnails']['default']['url'] }}" alt="{{ $item['snippet']['title'] }}" class="img-thumbnail">
+                                                <h4>{{ $loop->index + 1 }}) {{ Str::limit($item['snippet']['title'], 20) }} [{{ $item['contentDetails']['duration'] }}]</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>

@@ -31,4 +31,14 @@ class ExampleTest extends DuskTestCase
                 ->assertVisible('@submit');
         });
     }
+
+    public function testSearch()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit(new Welcome)
+                ->type('@search', 'test')
+                ->click('@submit')
+                ->assertSee('Results');
+        });
+    }
 }

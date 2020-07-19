@@ -10,6 +10,8 @@ Same as [Laravel's Server Requirements](https://laravel.com/docs/7.x/installatio
 
 Copy the `.env.example` file and rename it to `.env`, changing the variables accordingly.
 
+Set GOOGLE_DEVELOPER_KEY to the "API key" value from the "Access" tab of the [Google API Console](https://console.developers.google.com/). Please ensure that you have enabled the YouTube Data API for your project.
+
 ## Install
 
 Use [Composer](https://getcomposer.org/) to install dependencies:
