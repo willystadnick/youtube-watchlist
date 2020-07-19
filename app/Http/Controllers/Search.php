@@ -35,6 +35,9 @@ class Search extends Controller
             ]);
 
             foreach ($videos['items'] as $item) {
+                $words[] = $item['snippet']['title'];
+                $words[] = $item['snippet']['description'];
+
                 $seconds = (new \DateTime)
                     ->setTimeStamp(0)
                     ->add(new \DateInterval($item['contentDetails']['duration']))
@@ -46,6 +49,8 @@ class Search extends Controller
                     'minutes' => ceil($seconds / 60),
                 ];
             }
+
+            $data['words'] = $this->getMostUsedWords($words);
         } catch (\Google_Service_Exception $e) {
             $data['alert']['type'] = 'danger';
             $data['alert']['message'] = sprintf('<p>A service error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
@@ -55,5 +60,40 @@ class Search extends Controller
         }
 
         return view('search', $data);
+    }
+
+    private function getMostUsedWords($texts)
+    {
+        $lines = [];
+
+        foreach ($texts as $text) {
+            $_lines = explode("\n", $text);
+
+            foreach ($_lines as $line) {
+                if ($line) {
+                    $lines[] = $line;
+                }
+            }
+        }
+
+        $words = [];
+
+        foreach ($lines as $line) {
+            $_words = explode(" ", $line);
+
+            foreach ($_words as $word) {
+                if (preg_match('/\w/', $word)) {
+                    if (isset($words[$word])) {
+                        $words[$word]++;
+                    } else {
+                        $words[$word] = 1;
+                    }
+                }
+            }
+        }
+
+        arsort($words);
+
+        return array_slice($words, 0, 5);
     }
 }

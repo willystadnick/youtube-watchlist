@@ -24,7 +24,8 @@ class ExampleTest extends DuskTestCase
             $browser->visit(new Search)
                 ->type('@search', 'test')
                 ->click('@submit')
-                ->assertSee('Results');
+                ->assertSee('Results')
+                ->assertSee('Most used words');
         });
     }
 }

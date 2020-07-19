@@ -31,6 +31,22 @@
                         </form>
                     </div>
                 </div>
+                @if (isset($words))
+                <div class="row align-items-center justify-content-center mt-3">
+                    <div class="col align-self-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>Most used words</h2>
+                                <ol>
+                                    @foreach ($words as $word => $count)
+                                    <li>{{ $word }} ({{ $count }})</li>
+                                    @endforeach
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 @if (isset($results))
                 <div class="row align-items-center justify-content-center mt-3">
                     <div class="col align-self-center">
