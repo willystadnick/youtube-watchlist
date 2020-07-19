@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Welcome as Request;
+use App\Http\Requests\Search as Request;
 
-class Welcome extends Controller
+class Search extends Controller
 {
     public function search(Request $request)
     {
@@ -43,6 +43,6 @@ class Welcome extends Controller
             $data['alert']['message'] = sprintf('<p>A client error occurred: <code>%s</code></p>', htmlspecialchars($e->getMessage()));
         }
 
-        return view('welcome', $data);
+        return view('search', $data);
     }
 }
