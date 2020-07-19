@@ -19,15 +19,53 @@
                         </div>
                         @endif
                         <form method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group @error('search') text-danger @enderror">
-                                <label for="field-search">Search</label>
-                                <input type="text" class="form-control" id="field-search" name="search" value="{{ $input['search'] ?? old('search') }}" required>
-                                @error('search') <small>{{ $message }}</small> @enderror
+                            <div class="form-row">
+                                <div class="col">
+                                    @csrf
+                                    <div class="form-group @error('search') text-danger @enderror">
+                                        <label for="field-search">Search</label>
+                                        <input type="text" class="form-control" id="field-search" name="search" value="{{ $input['search'] ?? old('search') ?? 'test' }}" required>
+                                        @error('search') <small>{{ $message }}</small> @enderror
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <input class="btn btn-secondary" type="reset" value="Reset">
-                            <a href="/" class="btn btn-danger" role="button">Cancel</a>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="field-day1">Day 1</label>
+                                    <input type="number" class="form-control" id="field-day1" name="day1" value="{{ $input['day1'] ?? old('day1') ?? '15' }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="field-day1">Day 2</label>
+                                    <input type="number" class="form-control" id="field-day2" name="day2" value="{{ $input['day2'] ?? old('day2') ?? '120' }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="field-day1">Day 3</label>
+                                    <input type="number" class="form-control" id="field-day3" name="day3" value="{{ $input['day3'] ?? old('day3') ?? '30' }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="field-day1">Day 4</label>
+                                    <input type="number" class="form-control" id="field-day4" name="day4" value="{{ $input['day4'] ?? old('day4') ?? '150' }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="field-day1">Day 5</label>
+                                    <input type="number" class="form-control" id="field-day5" name="day5" value="{{ $input['day5'] ?? old('day5') ?? '20' }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="field-day1">Day 6</label>
+                                    <input type="number" class="form-control" id="field-day6" name="day6" value="{{ $input['day6'] ?? old('day6') ?? '40' }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="field-day1">Day 7</label>
+                                    <input type="number" class="form-control" id="field-day7" name="day7" value="{{ $input['day7'] ?? old('day7') ?? '90' }}" required>
+                                </div>
+                            </div>
+                            <div class="form-row mt-3">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <input class="btn btn-secondary" type="reset" value="Reset">
+                                    <a href="/" class="btn btn-danger" role="button">Cancel</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

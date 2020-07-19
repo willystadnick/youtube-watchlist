@@ -24,7 +24,14 @@ class Search extends FormRequest
     public function rules()
     {
         return [
-            'search' => 'required',
+            'search' => 'required|string',
+            'day1' => 'required|integer',
+            'day2' => 'required|integer',
+            'day3' => 'required|integer',
+            'day4' => 'required|integer',
+            'day5' => 'required|integer',
+            'day6' => 'required|integer',
+            'day7' => 'required|integer',
         ];
     }
 }

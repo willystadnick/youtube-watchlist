@@ -14,6 +14,13 @@ class ExampleTest extends DuskTestCase
             $browser->visit(new Search)
                 ->assertSee(env('APP_NAME'))
                 ->assertVisible('@search')
+                ->assertVisible('@day1')
+                ->assertVisible('@day2')
+                ->assertVisible('@day3')
+                ->assertVisible('@day4')
+                ->assertVisible('@day5')
+                ->assertVisible('@day6')
+                ->assertVisible('@day7')
                 ->assertVisible('@submit');
         });
     }

@@ -14,6 +14,13 @@ class Search extends Controller
         $data = [
             'input' => [
                 'search' => $request->search,
+                'day1' => $request->day1,
+                'day2' => $request->day2,
+                'day3' => $request->day3,
+                'day4' => $request->day4,
+                'day5' => $request->day5,
+                'day6' => $request->day6,
+                'day7' => $request->day7,
             ],
         ];
 
