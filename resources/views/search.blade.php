@@ -32,31 +32,31 @@
                             <div class="form-row">
                                 <div class="col">
                                     <label for="field-day1">Day 1</label>
-                                    <input type="number" class="form-control" id="field-day1" name="day1" value="{{ $input['day1'] ?? old('day1') ?? '15' }}" required>
+                                    <input type="number" class="form-control" id="field-day1" name="day1" value="{{ $input['days']['day1'] ?? old('day1') ?? '15' }}" required>
                                 </div>
                                 <div class="col">
                                     <label for="field-day1">Day 2</label>
-                                    <input type="number" class="form-control" id="field-day2" name="day2" value="{{ $input['day2'] ?? old('day2') ?? '120' }}" required>
+                                    <input type="number" class="form-control" id="field-day2" name="day2" value="{{ $input['days']['day2'] ?? old('day2') ?? '120' }}" required>
                                 </div>
                                 <div class="col">
                                     <label for="field-day1">Day 3</label>
-                                    <input type="number" class="form-control" id="field-day3" name="day3" value="{{ $input['day3'] ?? old('day3') ?? '30' }}" required>
+                                    <input type="number" class="form-control" id="field-day3" name="day3" value="{{ $input['days']['day3'] ?? old('day3') ?? '30' }}" required>
                                 </div>
                                 <div class="col">
                                     <label for="field-day1">Day 4</label>
-                                    <input type="number" class="form-control" id="field-day4" name="day4" value="{{ $input['day4'] ?? old('day4') ?? '150' }}" required>
+                                    <input type="number" class="form-control" id="field-day4" name="day4" value="{{ $input['days']['day4'] ?? old('day4') ?? '150' }}" required>
                                 </div>
                                 <div class="col">
                                     <label for="field-day1">Day 5</label>
-                                    <input type="number" class="form-control" id="field-day5" name="day5" value="{{ $input['day5'] ?? old('day5') ?? '20' }}" required>
+                                    <input type="number" class="form-control" id="field-day5" name="day5" value="{{ $input['days']['day5'] ?? old('day5') ?? '20' }}" required>
                                 </div>
                                 <div class="col">
                                     <label for="field-day1">Day 6</label>
-                                    <input type="number" class="form-control" id="field-day6" name="day6" value="{{ $input['day6'] ?? old('day6') ?? '40' }}" required>
+                                    <input type="number" class="form-control" id="field-day6" name="day6" value="{{ $input['days']['day6'] ?? old('day6') ?? '40' }}" required>
                                 </div>
                                 <div class="col">
                                     <label for="field-day1">Day 7</label>
-                                    <input type="number" class="form-control" id="field-day7" name="day7" value="{{ $input['day7'] ?? old('day7') ?? '90' }}" required>
+                                    <input type="number" class="form-control" id="field-day7" name="day7" value="{{ $input['days']['day7'] ?? old('day7') ?? '90' }}" required>
                                 </div>
                             </div>
                             <div class="form-row mt-3">
@@ -85,24 +85,35 @@
                     </div>
                 </div>
                 @endif
-                @if (isset($results))
+                @if (isset($watchlist))
                 <div class="row align-items-center justify-content-center mt-3">
                     <div class="col align-self-center">
                         <div class="card">
                             <div class="card-body">
                                 <h2>Results</h2>
-                                <div class="row align-items-center justify-content-center">
-                                    @foreach ($results as $item)
-                                    <div class="col-md-3 align-self-center mb-3">
+                                @foreach ($watchlist as $key => $value)
+                                <div class="row align-items-center justify-content-center mt-3">
+                                    <div class="col align-self-center">
                                         <div class="card">
                                             <div class="card-body">
-                                                <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}" class="img-thumbnail">
-                                                <h4>{{ $loop->index + 1 }}) {{ Str::limit($item['title'], 20) }} ~{{ $item['minutes'] }}min</h4>
+                                                <h3>{{ ucwords(str_replace('-', ' ', $key)) }}</h3>
+                                                <div class="row mt-3">
+                                                    @foreach ($value as $item)
+                                                    <div class="col-md-3 align-self-center mb-3">
+                                                    	<div class="card">
+                                                    		<div class="card-body">
+                                                    			<img src="{{ $item['image'] }}" alt="{{ $item['title'] }}" class="img-thumbnail">
+                                                    			<h4>{{ $loop->index + 1 }}) {{ Str::limit($item['title'], 20) }} ~{{ $item['minutes'] }}min</h4>
+                                                    		</div>
+                                                    	</div>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
