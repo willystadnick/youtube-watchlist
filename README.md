@@ -4,7 +4,7 @@ Solution to [challenge](challenge.md).
 
 ## Requirements
 
-Same as [Laravel's Server Requirements](https://laravel.com/docs/7.x/installation#server-requirements)
+Same as [Laravel's Server Requirements](https://laravel.com/docs/7.x/installation#server-requirements).
 
 ## Configuration
 
