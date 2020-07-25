@@ -1,6 +1,6 @@
 # youtube-watchlist
 
-Solution to [challenge](challenge.md) using [Laravel 7](https://laravel.com/docs/7.x).
+Solution to [challenge](challenge.md).
 
 ## Requirements
 
